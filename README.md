@@ -1,2 +1,3 @@
 # okta-java-parent
-okta-java-parent
+
+Maven parent used by Okta OSS projects. 
