@@ -45,7 +45,7 @@
         <testng.version>6.9.10</testng.version>
 
         <!-- Test Dependencies: Only required for testing when building the SDK.  Not required by SDK users at runtime: -->
-        <groovy.version>2.4.7</groovy.version>
+        <groovy.version>2.4.15</groovy.version>
 
         <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
 
@@ -80,8 +80,7 @@
         <connection>scm:git:git://github.com/okta/${github.slug}.git</connection>
         <developerConnection>scm:git:ssh://github.com:${github.slug}.git</developerConnection>
         <url>http://github.com/${github.slug}/tree/master</url>
-      <tag>HEAD</tag>
-  </scm>
+    </scm>
 
     <dependencyManagement>
         <dependencies>
@@ -106,7 +105,19 @@
             <!-- test deps -->
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-all</artifactId>
+                <artifactId>groovy</artifactId>
+                <version>${groovy.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-templates</artifactId>
+                <version>${groovy.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-json</artifactId>
                 <version>${groovy.version}</version>
                 <scope>test</scope>
             </dependency>
@@ -141,7 +152,17 @@
         <!-- Test dependencies -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
+            <artifactId>groovy</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-templates</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-json</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -232,7 +253,7 @@
                 <dependencies>
                     <dependency>
                         <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-all</artifactId>
+                        <artifactId>groovy</artifactId>
                         <version>${groovy.version}</version>
                     </dependency>
                 </dependencies>
