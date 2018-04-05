@@ -25,7 +25,7 @@
 
     <groupId>com.okta</groupId>
     <artifactId>okta-parent</artifactId>
-    <version>3-SNAPSHOT</version>
+    <version>3</version>
     <packaging>pom</packaging>
 
     <name>Okta OSS parent POM</name>
@@ -80,7 +80,8 @@
         <connection>scm:git:git://github.com/okta/${github.slug}.git</connection>
         <developerConnection>scm:git:ssh://github.com:${github.slug}.git</developerConnection>
         <url>http://github.com/${github.slug}/tree/master</url>
-    </scm>
+      <tag>okta-parent-3</tag>
+  </scm>
 
     <dependencyManagement>
         <dependencies>
