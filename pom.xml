@@ -57,7 +57,6 @@
 
         <!-- github -->
         <github.slug>okta/okta-java-parent</github.slug>
-
     </properties>
 
     <licenses>
@@ -80,8 +79,12 @@
         <connection>scm:git:git://github.com/okta/${github.slug}.git</connection>
         <developerConnection>scm:git:ssh://github.com:${github.slug}.git</developerConnection>
         <url>http://github.com/${github.slug}/tree/master</url>
-      <tag>HEAD</tag>
-  </scm>
+    </scm>
+
+    <modules>
+        <module>build-support</module>
+        <module>doclist-plugin</module>
+    </modules>
 
     <dependencyManagement>
         <dependencies>
@@ -183,16 +186,7 @@
             <plugin>
                 <groupId>org.jasig.maven</groupId>
                 <artifactId>maven-notice-plugin</artifactId>
-                <version>1.0.6.1</version>
                 <inherited>false</inherited>
-                <configuration>
-                    <fileName>THIRD-PARTY-NOTICES</fileName>
-                    <generateChildNotices>false</generateChildNotices>
-                    <noticeTemplate>${root.dir}/src/license/NOTICE.template</noticeTemplate>
-                    <licenseMapping>
-                        <mapping>src/license/mapping.xml</mapping>
-                    </licenseMapping>
-                </configuration>
                 <executions>
                     <execution>
                         <phase>generate-resources</phase>
@@ -202,26 +196,9 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>3.0</version>
-                <configuration>
-                    <aggregate>true</aggregate>
-                    <skipExistingHeaders>true</skipExistingHeaders>
-                    <header>${root.dir}/src/license/header.txt</header>
-                    <headerDefinitions>
-                        <headerDefinition>${root.dir}/src/license/header_format.xml</headerDefinition>
-                    </headerDefinitions>
-                    <properties>
-                        <organization.name>${project.organization.name}</organization.name>
-                    </properties>
-                    <excludes>
-                        <exclude>**/*.txt</exclude>
-                        <exclude>.codacy.yml</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -468,33 +445,17 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-pmd-plugin</artifactId>
                     <version>3.8</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.okta</groupId>
+                            <artifactId>okta-parent-build-support</artifactId>
+                            <version>4-SNAPSHOT</version>
+                        </dependency>
+                    </dependencies>
                     <configuration>
                         <rulesets>
-                            <ruleset>rulesets/java/basic.xml</ruleset>
-                            <ruleset>rulesets/java/empty.xml</ruleset>
-                            <ruleset>rulesets/java/imports.xml</ruleset>
-                            <ruleset>rulesets/java/unnecessary.xml</ruleset>
-                            <ruleset>rulesets/java/unusedcode.xml</ruleset>
-                            <ruleset>rulesets/java/sunsecure.xml</ruleset>
+                            <ruleset>pmd/ruleset.xml</ruleset>
                         </rulesets>
-                        <excludes>
-                            <!-- lang contains a few files copied from other projects -->
-                            <exclude>**/lang/*.java</exclude>
-                            <exclude>**/com/okta/sdk/impl/http/MediaType.java</exclude>
-                            <exclude>**/com/okta/sdk/impl/util/Base64.java</exclude>
-                            <exclude>**/com/okta/sdk/impl/util/BaseNCodec.java</exclude>
-                            <exclude>**/LinkedCaseInsensitiveMap</exclude>
-                            <exclude>**/com/okta/sdk/impl/util/MimeType.java</exclude>
-                            <!-- generated resources -->
-                            <exclude>**/com/okta/sdk/resource/**/*.java</exclude>
-                            <exclude>**/com/okta/sdk/client/Client.java</exclude>
-                            <exclude>**/com/okta/sdk/impl/resource/Default*.java</exclude>
-                            <exclude>**/com/okta/sdk/impl/resource/**/Default*.java</exclude>
-                            <exclude>**/com/okta/sdk/impl/client/DefaultClient.java</exclude>
-
-                            <!-- caching needs a little work -->
-                            <exclude>**/com/okta/sdk/impl/ds/cache/WriteCacheFilter.java</exclude>
-                        </excludes>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -509,6 +470,62 @@
                         <pubScmUrl>scm:git:https://${github.api.key}@github.com/${github.slug}.git</pubScmUrl>
                         <scmBranch>gh-pages</scmBranch> <!-- branch with static site -->
                         <checkoutDirectory>${project.build.directory}/scmpublish-checkout-javadoc</checkoutDirectory>
+                    </configuration>
+                </plugin>
+                    <plugin>
+                    <groupId>com.mycila</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>3.0</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.okta</groupId>
+                            <artifactId>okta-parent-build-support</artifactId>
+                            <version>4-SNAPSHOT</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <aggregate>true</aggregate>
+                        <skipExistingHeaders>true</skipExistingHeaders>
+                        <header>license/header.txt</header>
+                        <headerDefinitions>
+                            <headerDefinition>license/header_format.xml</headerDefinition>
+                        </headerDefinitions>
+                        <properties>
+                            <organization.name>${project.organization.name}</organization.name>
+                        </properties>
+                        <excludes>
+                            <exclude>**/*.txt</exclude>
+                            <exclude>.codacy.yml</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.jasig.maven</groupId>
+                    <artifactId>maven-notice-plugin</artifactId>
+                    <version>1.1.0</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.okta</groupId>
+                            <artifactId>okta-parent-build-support</artifactId>
+                            <version>4-SNAPSHOT</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <fileName>THIRD-PARTY-NOTICES</fileName>
+                        <generateChildNotices>false</generateChildNotices>
+                        <noticeTemplate>license/NOTICE.template</noticeTemplate>
+                        <licenseMapping>
+                            <mapping>license/mapping.xml</mapping>
+                        </licenseMapping>
+                        <includeScopes>compile</includeScopes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>2.5</version>
+                    <configuration>
+                        <generateBackupPoms>false</generateBackupPoms>
                     </configuration>
                 </plugin>
             </plugins>
@@ -710,6 +727,22 @@
                         <artifactId>maven-scm-publish-plugin</artifactId>
                         <version>1.1</version>
                         <inherited>false</inherited>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.okta</groupId>
+                        <artifactId>okta-doclist-maven-plugin</artifactId>
+                        <version>4-SNAPSHOT</version>
+                        <configuration>
+                            <outputDirectory>${gh-pages.dir}</outputDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>generate</id>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
