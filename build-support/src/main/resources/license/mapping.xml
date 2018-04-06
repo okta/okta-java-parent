@@ -40,4 +40,29 @@
         <artifactId>org.osgi.core</artifactId>
         <license>Apache License, Version 2.0</license>
     </artifact>
+    <artifact>
+        <groupId>antlr</groupId>
+        <artifactId>antlr</artifactId>
+        <license>BSD 3-clause license</license>
+    </artifact>
+    <artifact>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <license>Apache License, Version 2.0</license>
+    </artifact>
+    <artifact>
+        <groupId>dom4j</groupId>
+        <artifactId>dom4j</artifactId>
+        <license>BSD</license>
+    </artifact>
+    <artifact>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-i18n</artifactId>
+        <license>Apache License, Version 2.0</license>
+    </artifact>
+    <artifact>
+        <groupId>oro</groupId>
+        <artifactId>oro</artifactId>
+        <license>Apache License, Version 2.0</license>
+    </artifact>
 </license-lookup>
