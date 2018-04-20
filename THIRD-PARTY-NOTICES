@@ -41,9 +41,6 @@ This project includes:
   Doxia :: Site Renderer under Apache License, Version 2.0
   Doxia :: Skin Model under Apache License, Version 2.0
   Doxia :: XHTML Module under Apache License, Version 2.0
-  Jackson-annotations under The Apache Software License, Version 2.0
-  Jackson-core under The Apache Software License, Version 2.0
-  jackson-databind under The Apache Software License, Version 2.0
   JavaEWAH under Apache 2
   javax.inject under The Apache Software License, Version 2.0
   JGit - Core under Eclipse Distribution License (New BSD License)
