@@ -15,33 +15,31 @@
  */
 package com.okta.maven.doclist;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.IOUtil;
-import org.codehaus.plexus.util.InterpolationFilterReader;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.VERIFY, threadSafe = true)
 public class DocListMojo extends AbstractMojo {
@@ -85,36 +83,41 @@ public class DocListMojo extends AbstractMojo {
             FileUtils.copyURLToFile(getClass().getResource("/images/" + imageName), imageDest);
 
             // figure out the current version
-            List<String> versions = getVersions();
+            TreeMap<String, String> versionsMap = new TreeMap<>(getVersions().stream()
+                    .collect(Collectors.toMap(v -> v, v -> v)));
+
             String currentVersion = project.getVersion();
-            if (project.getArtifact().isSnapshot()) {
-                currentVersion = versions.stream()
-                        .findFirst()
-                        .orElse(currentVersion);
+            String currentVersionName;
+            String devVersion = "development";
+            String devVersionName = "Development";
+
+            if (versionsMap.get(currentVersion) != null) {
+                currentVersionName = currentVersion + "[Current]";
+                versionsMap.put(currentVersion, currentVersionName);
+            } else {
+                currentVersion = devVersion;
+                devVersionName = devVersionName + " [Current]";
+                currentVersionName = devVersionName;
             }
 
-            // use jackson to output a JSON string (to add to the template)
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            VelocityEngine velocityEngine = new VelocityEngine();
+            velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+            velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+            velocityEngine.init();
+            Template template = velocityEngine.getTemplate("/templates/index.vm");
 
-            // populate the map with the values
-            Map<String, Object> apiVersions = new HashMap<>();
-            apiVersions.put("name", project.getName());
-            apiVersions.put("url", project.getUrl());
-            apiVersions.put("current", currentVersion);
-            apiVersions.put("versions", versions);
-            apiVersions.put("legacy", getLegacyVersions());
+            VelocityContext context = new VelocityContext();
+            context.put("name", project.getName());
+            context.put("url", project.getUrl());
+            context.put("current", currentVersion);
+            context.put("currentName", currentVersionName);
+            context.put("versions", versionsMap.descendingMap());
+            context.put("legacy", getLegacyVersions());
+            context.put("devVersion", devVersion);
+            context.put("devVersionName", devVersionName);
 
-            // add the single 'apiVersions' arg to the map
-            Map<String, Object> vars = new HashMap<>();
-            vars.put("apiVersions", objectMapper.writeValueAsString(apiVersions));
-
-            // filter the template to the dest directory
-            URL rootIndexUrl = getClass().getResource("/templates/root-index.html");
-            InterpolationFilterReader reader;
-            try (InputStreamReader isr = new InputStreamReader(rootIndexUrl.openStream(), StandardCharsets.UTF_8)) {
-                reader = new InterpolationFilterReader(isr, vars);
-                IOUtil.copy(reader, new FileOutputStream(new File(outputDirectory, "index.html")));
+            try (FileWriter writer = new FileWriter(new File(outputDirectory, "index.html"))) {
+                template.merge(context, writer);
             }
 
         } catch (IOException e) {
