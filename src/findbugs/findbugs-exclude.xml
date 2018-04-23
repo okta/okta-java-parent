@@ -14,5 +14,17 @@
   ~ limitations under the License.
   -->
 <FindBugsFilter>
+  <!-- ignore return value when creating directories, a descriptive exception will thrown when writing the actual files -->
+  <Match>
+    <Class name="com.okta.maven.doclist.DocListMojo" />
+    <Method name="execute" params="" returns="void" />
+    <Bug pattern="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE" />
+  </Match>
 
+  <!-- False positive, there is no casting in this method -->
+  <Match>
+    <Class name="com.okta.maven.doclist.DocListMojo" />
+    <Method name="gitRepository" params="" returns="org.eclipse.jgit.lib.Repository" />
+    <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE" />
+  </Match>
 </FindBugsFilter>
