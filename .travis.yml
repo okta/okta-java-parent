@@ -1,5 +1,13 @@
 language: java
 jdk:
 - oraclejdk8
+addons:
+  apt:
+    packages:
+    - libxml2-utils
+    - oracle-java8-installer
+    - oracle-java8-set-default
+install:
+- "true"
 script:
-- "mvn install"
+- "./mvnw install"
