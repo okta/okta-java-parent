@@ -43,7 +43,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-@Mojo(name = "generate", defaultPhase = LifecyclePhase.VERIFY, threadSafe = true)
+@Mojo(name = "generate", defaultPhase = LifecyclePhase.VERIFY, threadSafe = true, aggregator = true)
 public class DocListMojo extends AbstractMojo {
 
     /**
