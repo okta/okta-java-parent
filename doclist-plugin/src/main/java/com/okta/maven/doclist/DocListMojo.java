@@ -31,8 +31,10 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -116,7 +118,7 @@ public class DocListMojo extends AbstractMojo {
             context.put("devVersion", devVersion);
             context.put("devVersionName", devVersionName);
 
-            try (FileWriter writer = new FileWriter(new File(outputDirectory, "index.html"))) {
+            try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(new File(outputDirectory, "index.html")), StandardCharsets.UTF_8)) {
                 template.merge(context, writer);
             }
 
