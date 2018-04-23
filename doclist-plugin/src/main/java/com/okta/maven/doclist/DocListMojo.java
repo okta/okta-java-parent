@@ -15,6 +15,7 @@
  */
 package com.okta.maven.doclist;
 
+import com.google.inject.Exposed;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -94,7 +95,7 @@ public class DocListMojo extends AbstractMojo {
             String devVersionName = "Development";
 
             if (versionsMap.get(currentVersion) != null) {
-                currentVersionName = currentVersion + "[Current]";
+                currentVersionName = currentVersion + " [Current]";
                 versionsMap.put(currentVersion, currentVersionName);
             } else {
                 currentVersion = devVersion;
@@ -138,7 +139,7 @@ public class DocListMojo extends AbstractMojo {
           .build();
     }
 
-    private List<String> getVersions() throws IOException {
+    List<String> getVersions() throws IOException {
 
         List<String> versions = new ArrayList<>();
 
@@ -153,5 +154,25 @@ public class DocListMojo extends AbstractMojo {
         });
         versions.sort(Collections.reverseOrder());
         return versions;
+    }
+
+    DocListMojo setOutputDirectory(File outputDirectory) {
+        this.outputDirectory = outputDirectory;
+        return this;
+    }
+
+    DocListMojo setGitTagToVersionRegex(String gitTagToVersionRegex) {
+        this.gitTagToVersionRegex = gitTagToVersionRegex;
+        return this;
+    }
+
+    DocListMojo setLegacyVersions(List<String> legacyVersions) {
+        this.legacyVersions = legacyVersions;
+        return this;
+    }
+
+    DocListMojo setProject(MavenProject project) {
+        this.project = project;
+        return this;
     }
 }
