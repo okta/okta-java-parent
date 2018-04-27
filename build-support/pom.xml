@@ -26,7 +26,7 @@
 
     <groupId>com.okta</groupId>
     <artifactId>okta-parent-build-support</artifactId>
-    <version>4</version>
+    <version>5-SNAPSHOT</version>
 
     <name>Okta Java Parent :: Build Support</name>
     <description>
@@ -54,9 +54,4 @@
             <organizationUrl>https://www.okta.com</organizationUrl>
         </developer>
     </developers>
-
-
-  <scm>
-    <tag>okta-parent-4</tag>
-  </scm>
 </project>
