@@ -25,7 +25,7 @@
 
     <groupId>com.okta</groupId>
     <artifactId>okta-parent</artifactId>
-    <version>4-SNAPSHOT</version>
+    <version>4</version>
     <packaging>pom</packaging>
 
     <name>Okta OSS parent POM</name>
@@ -79,7 +79,8 @@
         <connection>scm:git:git://github.com/okta/${github.slug}.git</connection>
         <developerConnection>scm:git:ssh://github.com:${github.slug}.git</developerConnection>
         <url>http://github.com/${github.slug}/tree/master</url>
-    </scm>
+      <tag>okta-parent-4</tag>
+  </scm>
 
     <modules>
         <module>build-support</module>
@@ -436,7 +437,7 @@
                         <dependency>
                             <groupId>com.okta</groupId>
                             <artifactId>okta-parent-build-support</artifactId>
-                            <version>4-SNAPSHOT</version>
+                            <version>4</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -467,7 +468,7 @@
                         <dependency>
                             <groupId>com.okta</groupId>
                             <artifactId>okta-parent-build-support</artifactId>
-                            <version>4-SNAPSHOT</version>
+                            <version>4</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -495,7 +496,7 @@
                         <dependency>
                             <groupId>com.okta</groupId>
                             <artifactId>okta-parent-build-support</artifactId>
-                            <version>4-SNAPSHOT</version>
+                            <version>4</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -719,7 +720,7 @@
                     <plugin>
                         <groupId>com.okta</groupId>
                         <artifactId>okta-doclist-maven-plugin</artifactId>
-                        <version>4-SNAPSHOT</version>
+                        <version>4</version>
                         <configuration>
                             <outputDirectory>${gh-pages.dir}</outputDirectory>
                         </configuration>
