@@ -85,6 +85,7 @@
     <modules>
         <module>build-support</module>
         <module>doclist-plugin</module>
+        <module>changelog-plugin</module>
     </modules>
 
     <dependencyManagement>
