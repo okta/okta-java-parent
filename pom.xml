@@ -377,6 +377,11 @@
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jxr-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
                 <!-- Speed up dependency report by skipping check to see if resources are in specified repos -->
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -660,6 +665,7 @@
                 <javadoc.version.dir>development/</javadoc.version.dir>
                 <gh-pages.dir>${project.build.directory}/gh-pages</gh-pages.dir>
                 <javadoc.output.dir>${gh-pages.dir}/${javadoc.version.dir}apidocs</javadoc.output.dir>
+                <xref.output.dir>${gh-pages.dir}/${javadoc.version.dir}xref</xref.output.dir>
             </properties>
             <build>
                 <pluginManagement>
@@ -703,6 +709,18 @@
                                 <outputDirectory>${javadoc.output.dir}</outputDirectory>
                                 <reportOutputDirectory>${javadoc.output.dir}</reportOutputDirectory>
                             </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-jxr-plugin</artifactId>
+                            <configuration>
+                                <linkJavadoc>true</linkJavadoc>
+                                <javadocDir>${javadoc.output.dir}</javadocDir>
+                                <destDir>${xref.output.dir}</destDir>
+                            </configuration>
+                            <goals>
+                                <goal>aggregate</goal>
+                            </goals>
                         </plugin>
                     </plugins>
                 </pluginManagement>
