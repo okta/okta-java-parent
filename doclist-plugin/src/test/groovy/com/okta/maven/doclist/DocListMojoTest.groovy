@@ -38,7 +38,7 @@ class DocListMojoTest {
 
         def tempDir = File.createTempDir()
         def project = mock(MavenProject)
-        when(project.getVersion()).thenReturn("version-2")
+        when(project.getVersion()).thenReturn("version-2-SNAPSHOT")
         when(project.getName()).thenReturn("my-name")
         when(project.getUrl()).thenReturn("http://example.com/url")
 
@@ -61,6 +61,39 @@ class DocListMojoTest {
                 containsString("<a href=\"legacy-1/apidocs/index.html\" target=\"javadocs\">legacy-1 [Legacy]</a>"),
                 containsString("<a href=\"legacy-2/apidocs/index.html\" target=\"javadocs\">legacy-2 [Legacy]</a>"),
                 containsString("<iframe style=\"width: 100%; height: 100vh\" src=\"version-2/apidocs/index.html\" name=\"javadocs\"></iframe>") // currently selected version
+        )
+    }
+
+    @Test
+    void noTagsTest() {
+        def mojo = new DocListMojo() {
+            @Override
+            List<String> getVersions() throws IOException {
+                return []
+            }
+        }
+
+        def tempDir = File.createTempDir()
+        def project = mock(MavenProject)
+        when(project.getVersion()).thenReturn("version-2-SNAPSHOT")
+        when(project.getName()).thenReturn("my-name")
+        when(project.getUrl()).thenReturn("http://example.com/url")
+
+        mojo.outputDirectory = tempDir
+        mojo.legacyVersions = []
+        mojo.project = project
+
+        mojo.execute()
+
+        def outputFile = new File(tempDir, "index.html")
+        assertThat outputFile, anExistingFile()
+
+        String html = outputFile.text
+
+        assertThat html, allOf(
+                containsString("<a id=\"projectLink\" href=\"http://example.com/url\">my-name</a>"),
+                containsString("<a href=\"development/apidocs/index.html\" target=\"javadocs\">Development [Current]</a>"),
+                containsString("<iframe style=\"width: 100%; height: 100vh\" src=\"development/apidocs/index.html\" name=\"javadocs\"></iframe>") // currently selected version
         )
     }
 }
