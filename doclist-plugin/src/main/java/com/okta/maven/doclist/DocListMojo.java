@@ -38,6 +38,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NavigableMap;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -85,10 +86,12 @@ public class DocListMojo extends AbstractMojo {
             FileUtils.copyURLToFile(getClass().getResource("/images/" + imageName), imageDest);
 
             // figure out the current version
-            TreeMap<String, String> versionsMap = new TreeMap<>(getVersions().stream()
-                    .collect(Collectors.toMap(v -> v, v -> v)));
+            NavigableMap<String, String> versionsMap = new TreeMap<>(getVersions().stream()
+                    .collect(Collectors.toMap(v -> v, v -> v))).descendingMap();
 
-            String currentVersion = project.getVersion();
+            String currentVersion = versionsMap.isEmpty()
+                                                    ? project.getVersion()
+                                                    : versionsMap.firstEntry().getKey();
             String currentVersionName;
             String devVersion = "development";
             String devVersionName = "Development";
@@ -113,7 +116,7 @@ public class DocListMojo extends AbstractMojo {
             context.put("url", project.getUrl());
             context.put("current", currentVersion);
             context.put("currentName", currentVersionName);
-            context.put("versions", versionsMap.descendingMap());
+            context.put("versions", versionsMap);
             context.put("legacy", getLegacyVersions());
             context.put("devVersion", devVersion);
             context.put("devVersionName", devVersionName);
