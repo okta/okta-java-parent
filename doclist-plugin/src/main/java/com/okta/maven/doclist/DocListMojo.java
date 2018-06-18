@@ -36,7 +36,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.TreeMap;
@@ -154,7 +153,6 @@ public class DocListMojo extends AbstractMojo {
                 versions.add(version);
             }
         });
-        versions.sort(Collections.reverseOrder());
         return versions;
     }
 
