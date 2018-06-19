@@ -19,12 +19,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
+        <groupId>com.okta</groupId>
+        <artifactId>okta-aggregator</artifactId>
+        <version>5-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.okta</groupId>
     <artifactId>okta-parent-build-support</artifactId>
     <version>5-SNAPSHOT</version>
 
@@ -32,26 +31,4 @@
     <description>
         Used by Okta Maven project builds to provide common build resources i.e. license headers, PMD rules, etc.
     </description>
-    <url>https://github.com/okta/okta-java-parent</url>
-    <organization>
-        <name>Okta</name>
-        <url>http://developer.okta.com/</url>
-    </organization>
-    <inceptionYear>2018</inceptionYear>
-
-    <licenses>
-        <license>
-            <name>The Apache License, Version 2.0</name>
-            <url>https://github.com/okta/okta-sdk-java/blob/master/LICENSE</url>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <name>Okta</name>
-            <email>developers@okta.com</email>
-            <organization>Okta</organization>
-            <organizationUrl>https://www.okta.com</organizationUrl>
-        </developer>
-    </developers>
 </project>
