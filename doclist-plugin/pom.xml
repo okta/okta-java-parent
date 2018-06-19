@@ -22,6 +22,7 @@
         <groupId>com.okta</groupId>
         <artifactId>okta-parent</artifactId>
         <version>5-SNAPSHOT</version>
+        <relativePath>../parent</relativePath>
     </parent>
 
     <artifactId>okta-doclist-maven-plugin</artifactId>
@@ -93,7 +94,7 @@
                 <artifactId>maven-plugin-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
-                    <goalPrefix>doc-list</goalPrefix>
+                    <goalPrefix>okta-doclist</goalPrefix>
                 </configuration>
             </plugin>
         </plugins>
