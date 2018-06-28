@@ -75,6 +75,7 @@
         <module>build-support</module>
         <module>parent</module>
         <module>doclist-plugin</module>
+        <module>code-snippet-plugin</module>
     </modules>
 
     <build>
