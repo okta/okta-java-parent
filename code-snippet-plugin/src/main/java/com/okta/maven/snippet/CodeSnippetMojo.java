@@ -16,8 +16,9 @@
 package com.okta.maven.snippet;
 
 import com.github.javaparser.JavaParser;
-import com.github.javaparser.ast.Node;
+import com.github.javaparser.TokenRange;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.comments.Comment;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -26,6 +27,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.IOUtil;
+import org.codehaus.plexus.util.StringUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,6 +37,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -115,15 +118,30 @@ public class CodeSnippetMojo extends AbstractMojo {
 
         final Map<String, String> methodBodyMap = new HashMap<>();
 
-
         new VoidVisitorAdapter<Object>() {
             @Override
             public void visit(final MethodDeclaration method, final Object arg) {
                 super.visit(method, arg);
 
                 String body = method.getBody().get().getStatements().stream()
-                        .map(Node::toString)
+                        .map(statement -> {
+                            TokenRange tokenRange = statement.getTokenRange().get();
+                            Optional<Comment> comment = statement.getComment();
+
+                            StringBuilder blockAsString = new StringBuilder();
+                            if (comment.isPresent()) {
+                                blockAsString.append("\n")
+                                            .append(comment.get());
+                            }
+                            blockAsString.append(tokenRange.toString().replaceAll(" {8}", ""));
+
+                            return blockAsString;
+                        })
                         .collect(Collectors.joining("\n"));
+
+                // if the body starts or ends with new lines, strip them
+                body = StringUtils.strip(body, "\n");
+
                 methodBodyMap.put(method.getNameAsString(), body);
             }
         }.visit(JavaParser.parse(sourceFile), null);
