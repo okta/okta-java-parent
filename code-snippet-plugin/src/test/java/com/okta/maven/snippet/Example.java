@@ -18,12 +18,17 @@ package com.okta.maven.snippet;
 public class Example {
 
     public void doFoo() {
-        System.out.println("doing foo");
+        System
+          .out.println("doing foo");
         int result = 1 + 1;
     }
 
     private void andBar(String value) {
+        // with a comment
         String another = value + "bar";
+
+        // another comment
         int result = 2 + 2;
+
     }
 }
