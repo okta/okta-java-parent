@@ -14,3 +14,6 @@ install:
 
 script:
 - "./mvnw install"
+
+after_failure:
+- curl 'https://api.ipify.org?format=json'
