@@ -1,13 +1,19 @@
 language: java
+
 jdk:
 - oraclejdk8
-addons:
-  apt:
-    packages:
-    - libxml2-utils
-    - oracle-java8-installer
-    - oracle-java8-set-default
+- openjdk11
+
+matrix:
+  allow_failures:
+  - jdk: openjdk11
+
+# skip the Travis-CI install phase because Maven handles that directly
 install:
 - "true"
+
 script:
 - "./mvnw install"
+
+after_failure:
+- curl 'https://api.ipify.org?format=json'
