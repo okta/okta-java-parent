@@ -26,7 +26,7 @@
     </parent>
 
     <artifactId>okta-code-snippet-maven-plugin</artifactId>
-    <name>Okta Doc List Maven Plugin</name>
+    <name>Okta Code Snippet Maven Plugin</name>
     <description>
         Allows for importing source snippets into other files, such as a README.md
     </description>

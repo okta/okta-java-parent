@@ -19,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat
 import static org.hamcrest.Matchers.is
 import org.testng.annotations.Test
 
-class DocListMojoTest {
+class CodeSnippetMojoTest {
 
     @Test
     void happyPath() {
