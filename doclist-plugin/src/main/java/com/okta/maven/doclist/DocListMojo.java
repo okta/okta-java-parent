@@ -79,10 +79,10 @@ public class DocListMojo extends AbstractMojo {
             outputDirectory.mkdirs();
 
             // copy in image
-            String imageName = "okta-dev-logo-48.png";
-            File imageDest = new File(outputDirectory, "images/" + imageName);
+            String imageName = "/images/okta-dev-logo-48.png";
+            File imageDest = new File(outputDirectory, imageName);
             imageDest.getParentFile().mkdir();
-            FileUtils.copyURLToFile(getClass().getResource("/images/" + imageName), imageDest);
+            FileUtils.copyURLToFile(DocListMojo.class.getResource(imageName), imageDest);
 
             // figure out the current version
             NavigableMap<String, String> versionsMap = new TreeMap<>(getVersions().stream()
