@@ -133,7 +133,7 @@ public class CodeSnippetMojo extends AbstractMojo {
                                 blockAsString.append("\n")
                                             .append(comment.get());
                             }
-                            blockAsString.append(tokenRange.toString().replaceAll(" {8}", ""));
+                            blockAsString.append(tokenRange.toString().replaceAll("\n {8}", "\n"));
 
                             return blockAsString;
                         })

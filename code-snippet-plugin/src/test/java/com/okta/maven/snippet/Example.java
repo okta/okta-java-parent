@@ -23,6 +23,13 @@ public class Example {
         int result = 1 + 1;
     }
 
+    public void lotsOfWhiteSpace() {
+        System
+                .out
+                .println("doing foo");
+        int result =   1 + 1;
+    }
+
     private void andBar(String value) {
         // with a comment
         String another = value + "bar";
