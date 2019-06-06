@@ -20,3 +20,14 @@ String another = value + "bar";
 int result = 2 + 2;
 ```
 [//]: # (end: andBar)
+
+Lots of whitespace
+
+[//]: # (method: lotsOfWhiteSpace)
+```java
+System
+        .out
+        .println("doing foo");
+int result =   1 + 1;
+```
+[//]: # (end: lotsOfWhiteSpace)
