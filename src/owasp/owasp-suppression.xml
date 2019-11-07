@@ -29,4 +29,13 @@
         <gav regex="true">^org\.slf4j:slf4j-api:.*$</gav>
         <cve>CVE-2018-8088</cve>
     </suppress>
+
+    <!-- wrong GAV, bouncy castle != openpgp -->
+    <suppress>
+        <notes><![CDATA[ file name: bcpg-jdk15on-1.61.jar ]]></notes>
+        <gav regex="true">^org\.bouncycastle:bcpg-jdk15on:.*$</gav>
+        <cpe>cpe:/a:openpgp:openpgp</cpe>
+        <cpe>cpe:/a:pgp:openpgp</cpe>
+        <cpe>cpe:/a:pgp:pgp</cpe>
+    </suppress>
 </suppressions>
