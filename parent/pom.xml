@@ -35,12 +35,12 @@
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j.version>1.7.26</slf4j.version>
-        <testng.version>6.14.3</testng.version>
+        <slf4j.version>1.7.29</slf4j.version>
+        <testng.version>7.0.0</testng.version>
         <maven.version>3.6.0</maven.version>
 
         <!-- Test Dependencies: Only required for testing when building the SDK.  Not required by SDK users at runtime: -->
-        <groovy.version>2.5.7</groovy.version>
+        <groovy.version>2.5.8</groovy.version>
 
         <!-- deploy site key -->
         <github.api.key>${env.GH_API_KEY}</github.api.key>
@@ -98,7 +98,7 @@
             <dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest</artifactId>
-                <version>2.1</version>
+                <version>2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.testng</groupId>
@@ -109,7 +109,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>2.28.2</version>
+                <version>3.1.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -165,7 +165,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>3.2.0</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -179,7 +179,7 @@
                 <!-- For unit tests: -->
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.7.1</version>
+                <version>1.8.0</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.codehaus.groovy</groupId>
@@ -280,7 +280,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.1.1</version>
                     <executions>
                         <execution>
                             <id>attach-javadocs</id>
@@ -311,7 +311,7 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.4</version>
+                    <version>0.8.5</version>
                 </plugin>
                 <!-- FindBugs Static Analysis -->
                 <plugin>
@@ -594,7 +594,6 @@
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-scm-publish-plugin</artifactId>
-                            <version>1.1</version>
                             <inherited>false</inherited>
                             <configuration>
                                 <checkinComment>Publishing javadoc for ${project.artifactId}:${project.version}</checkinComment>
@@ -653,7 +652,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-scm-publish-plugin</artifactId>
-                        <version>1.1</version>
                         <inherited>false</inherited>
                     </plugin>
                     <plugin>
