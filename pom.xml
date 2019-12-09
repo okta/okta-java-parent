@@ -162,6 +162,14 @@
                         <generateBackupPoms>false</generateBackupPoms>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>io.snyk</groupId>
+                    <artifactId>snyk-maven-plugin</artifactId>
+                    <version>1.2.5</version>
+                    <configuration>
+                        <apiToken>${env.SNYK_API_TOKEN}</apiToken>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
