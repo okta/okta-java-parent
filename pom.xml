@@ -25,7 +25,7 @@
 
     <groupId>com.okta</groupId>
     <artifactId>okta-aggregator</artifactId>
-    <version>17</version>
+    <version>18-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Okta OSS Root POM</name>
@@ -68,7 +68,7 @@
         <connection>scm:git:git://github.com/okta/${github.slug}.git</connection>
         <developerConnection>scm:git:ssh://github.com:${github.slug}.git</developerConnection>
         <url>http://github.com/${github.slug}/tree/master</url>
-      <tag>okta-aggregator-17</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <modules>
