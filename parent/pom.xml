@@ -385,7 +385,7 @@
                         </headerDefinitions>
                         <properties>
                             <organization.name>${project.organization.name}</organization.name>
-                            <year>2018</year>
+                            <year>2020</year>
                         </properties>
                         <excludes>
                             <exclude>**/*.txt</exclude>
