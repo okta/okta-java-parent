@@ -145,13 +145,11 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>5.0.0</version>
+                    <version>6.0.2</version>
                     <configuration>
                         <suppressionFile>${root.dir}/src/owasp/owasp-suppression.xml</suppressionFile>
                         <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
                         <name>OWASP Dependency Check</name>
-                        <cveUrlModified>https://nvd.nist.gov/feeds/json/cve/1.0/nvdcve-1.0-modified.json.gz</cveUrlModified>
-                        <cveUrlBase>https://nvd.nist.gov/feeds/json/cve/1.0/nvdcve-1.0-%d.json.gz</cveUrlBase>
                     </configuration>
                 </plugin>
                 <plugin>
