@@ -39,7 +39,7 @@
         <cpe>cpe:/a:pgp:pgp</cpe>
     </suppress>
 
-    <!-- our source code do not use the offending method com.google.common.io.Files.createTempDir -->
+    <!-- we do not use the offending method com.google.common.io.Files.createTempDir -->
     <suppress>
         <notes><![CDATA[ file name: guava-25.1-android.jar ]]></notes>
         <gav regex="true">^com\.google\.guava:.*$</gav>
