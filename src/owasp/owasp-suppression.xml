@@ -19,26 +19,6 @@
   -->
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
 
-    <!-- wrong GAV, this CVE effects slf4j-ext not the other slf4j- projects
-         https://nvd.nist.gov/vuln/detail/CVE-2018-8088
-
-         > org.slf4j.ext.EventData in the slf4j-ext module in QOS.CH SLF4J ...
-    -->
-    <suppress>
-        <notes><![CDATA[ file name: slf4j-api-1.7.25.jar ]]></notes>
-        <gav regex="true">^org\.slf4j:slf4j-api:.*$</gav>
-        <cve>CVE-2018-8088</cve>
-    </suppress>
-
-    <!-- wrong GAV, bouncy castle != openpgp -->
-    <suppress>
-        <notes><![CDATA[ file name: bcpg-jdk15on-1.61.jar ]]></notes>
-        <gav regex="true">^org\.bouncycastle:bcpg-jdk15on:.*$</gav>
-        <cpe>cpe:/a:openpgp:openpgp</cpe>
-        <cpe>cpe:/a:pgp:openpgp</cpe>
-        <cpe>cpe:/a:pgp:pgp</cpe>
-    </suppress>
-
     <!-- we do not use the offending method com.google.common.io.Files.createTempDir -->
     <suppress>
         <notes><![CDATA[ file name: guava-25.1-android.jar ]]></notes>
