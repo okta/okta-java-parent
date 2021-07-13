@@ -38,6 +38,7 @@
         <slf4j.version>1.7.31</slf4j.version>
         <testng.version>7.4.0</testng.version>
         <maven.version>3.8.1</maven.version>
+        <commons-io.version>2.10.0</commons-io.version>
 
         <!-- Test Dependencies: Only required for testing when building the SDK.  Not required by SDK users at runtime: -->
         <groovy.version>2.5.8</groovy.version>
@@ -51,6 +52,12 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
 
             <!-- Logging -->
             <dependency>
@@ -313,24 +320,24 @@
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.8.7</version>
                 </plugin>
-                <!-- FindBugs Static Analysis -->
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>3.0.5</version>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>4.3.0</version>
                     <configuration>
                         <effort>Max</effort>
                         <threshold>Low</threshold>
+                        <xmlOutput>true</xmlOutput>
                         <failOnError>true</failOnError>
                         <omitVisitors>CrlfLogInjectionDetector</omitVisitors>
                         <excludeFilterFile>${root.dir}/src/findbugs/findbugs-exclude.xml</excludeFilterFile>
-                        <plugins>
-                            <plugin>
-                                <groupId>com.h3xstream.findsecbugs</groupId>
-                                <artifactId>findsecbugs-plugin</artifactId>
-                                <version>1.11.0</version>
-                            </plugin>
-                        </plugins>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </configuration>
                 </plugin>
                 <plugin>
