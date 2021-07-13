@@ -25,7 +25,7 @@
 
     <groupId>com.okta</groupId>
     <artifactId>okta-aggregator</artifactId>
-    <version>19-SNAPSHOT</version>
+    <version>20-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Okta OSS Root POM</name>
@@ -145,7 +145,7 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>6.0.2</version>
+                    <version>6.2.2</version>
                     <configuration>
                         <suppressionFile>${root.dir}/src/owasp/owasp-suppression.xml</suppressionFile>
                         <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
@@ -163,7 +163,7 @@
                 <plugin>
                     <groupId>io.snyk</groupId>
                     <artifactId>snyk-maven-plugin</artifactId>
-                    <version>1.2.5</version>
+                    <version>1.2.9</version>
                     <configuration>
                         <apiToken>${env.SNYK_API_TOKEN}</apiToken>
                     </configuration>
