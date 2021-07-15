@@ -333,6 +333,8 @@
                         <excludeFilterFile>${root.dir}/src/findbugs/findbugs-exclude.xml</excludeFilterFile>
                         <executions>
                             <execution>
+                                <id>scan</id>
+                                <phase>verify</phase>
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
@@ -516,19 +518,6 @@
                         <executions>
                             <execution>
                                 <id>check-license-headers</id>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>findbugs-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>scan</id>
-                                <phase>verify</phase>
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
