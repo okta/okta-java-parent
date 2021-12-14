@@ -73,7 +73,7 @@
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.2.3</version>
+                <version>1.2.8</version>
             </dependency>
 
             <!-- maven plugin related -->
@@ -186,7 +186,7 @@
                 <!-- For unit tests: -->
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.8.0</version>
+                <version>1.13.1</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.codehaus.groovy</groupId>
