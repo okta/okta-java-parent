@@ -305,7 +305,7 @@
                 <!-- Speed up dependency report by skipping check to see if resources are in specified repos -->
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.2.1</version>
+                    <version>3.2.2</version>
                     <configuration>
                         <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                     </configuration>
