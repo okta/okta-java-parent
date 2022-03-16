@@ -21,7 +21,7 @@
     <parent>
         <groupId>com.okta</groupId>
         <artifactId>okta-parent</artifactId>
-        <version>22-SNAPSHOT</version>
+        <version>23-SNAPSHOT</version>
         <relativePath>../parent</relativePath>
     </parent>
 

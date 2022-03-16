@@ -25,7 +25,7 @@
 
     <groupId>com.okta</groupId>
     <artifactId>okta-aggregator</artifactId>
-    <version>22-SNAPSHOT</version>
+    <version>23-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Okta OSS Root POM</name>
@@ -103,7 +103,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.11</version>
+                <version>1.6.12</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-staging</serverId>
@@ -150,7 +150,7 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>6.5.3</version>
+                    <version>7.0.0</version>
                     <configuration>
                         <suppressionFile>${root.dir}/src/owasp/owasp-suppression.xml</suppressionFile>
                         <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
@@ -160,7 +160,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.9.0</version>
+                    <version>2.10.0</version>
                     <configuration>
                         <generateBackupPoms>false</generateBackupPoms>
                     </configuration>
