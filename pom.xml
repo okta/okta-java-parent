@@ -150,7 +150,7 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>7.0.0</version>
+                    <version>7.0.1</version>
                     <configuration>
                         <suppressionFile>${root.dir}/src/owasp/owasp-suppression.xml</suppressionFile>
                         <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
