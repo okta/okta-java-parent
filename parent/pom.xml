@@ -40,7 +40,7 @@
         <maven.version>3.8.6</maven.version>
 
         <!-- Test Dependencies: Only required for testing when building the SDK.  Not required by SDK users at runtime: -->
-        <groovy.version>4.0.1</groovy.version>
+        <groovy.version>4.0.4</groovy.version>
 
         <!-- deploy site key -->
         <github.api.key>${env.GH_API_KEY}</github.api.key>
@@ -305,7 +305,7 @@
                 <!-- Speed up dependency report by skipping check to see if resources are in specified repos -->
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.3.0</version>
+                    <version>3.4.0</version>
                     <configuration>
                         <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                     </configuration>
@@ -345,7 +345,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-pmd-plugin</artifactId>
-                    <version>3.16.0</version>
+                    <version>3.17.0</version>
                     <dependencies>
                         <dependency>
                             <groupId>com.okta</groupId>
@@ -460,7 +460,7 @@
                                 <dependency>
                                     <groupId>com.sun.xml.bind</groupId>
                                     <artifactId>jaxb-core</artifactId>
-                                    <version>3.0.2</version>
+                                    <version>4.0.0</version>
                                 </dependency>
                                 <dependency>
                                     <groupId>com.sun.xml.bind</groupId>
