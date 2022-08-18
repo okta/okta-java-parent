@@ -116,7 +116,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>4.6.1</version>
+                <version>4.7.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -287,7 +287,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.4.0</version>
+                    <version>3.4.1</version>
                     <executions>
                         <execution>
                             <id>attach-javadocs</id>
@@ -305,7 +305,7 @@
                 <!-- Speed up dependency report by skipping check to see if resources are in specified repos -->
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.4.0</version>
+                    <version>3.4.1</version>
                     <configuration>
                         <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                     </configuration>
