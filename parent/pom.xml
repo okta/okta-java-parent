@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.okta</groupId>
         <artifactId>okta-aggregator</artifactId>
-        <version>24-SNAPSHOT</version>
+        <version>25-SNAPSHOT</version>
     </parent>
 
     <artifactId>okta-parent</artifactId>
@@ -116,7 +116,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>4.4.0</version>
+                <version>4.6.1</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -350,7 +350,7 @@
                         <dependency>
                             <groupId>com.okta</groupId>
                             <artifactId>okta-parent-build-support</artifactId>
-                            <version>24-SNAPSHOT</version>
+                            <version>25-SNAPSHOT</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -382,7 +382,7 @@
                         <dependency>
                             <groupId>com.okta</groupId>
                             <artifactId>okta-parent-build-support</artifactId>
-                            <version>24-SNAPSHOT</version>
+                            <version>25-SNAPSHOT</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -414,7 +414,7 @@
                         <dependency>
                             <groupId>com.okta</groupId>
                             <artifactId>okta-parent-build-support</artifactId>
-                            <version>24-SNAPSHOT</version>
+                            <version>25-SNAPSHOT</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -663,7 +663,7 @@
                     <plugin>
                         <groupId>com.okta</groupId>
                         <artifactId>okta-doclist-maven-plugin</artifactId>
-                        <version>24-SNAPSHOT</version>
+                        <version>25-SNAPSHOT</version>
                         <configuration>
                             <outputDirectory>${gh-pages.dir}</outputDirectory>
                         </configuration>
