@@ -35,8 +35,9 @@
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j.version>2.0.1</slf4j.version>
+        <slf4j.version>2.0.2</slf4j.version>
         <testng.version>7.6.1</testng.version>
+
         <maven.version>3.8.6</maven.version>
 
         <!-- Test Dependencies: Only required for testing when building the SDK.  Not required by SDK users at runtime: -->
@@ -460,12 +461,12 @@
                                 <dependency>
                                     <groupId>com.sun.xml.bind</groupId>
                                     <artifactId>jaxb-core</artifactId>
-                                    <version>4.0.0</version>
+                                    <version>4.0.1</version>
                                 </dependency>
                                 <dependency>
                                     <groupId>com.sun.xml.bind</groupId>
                                     <artifactId>jaxb-impl</artifactId>
-                                    <version>4.0.0</version>
+                                    <version>4.0.1</version>
                                 </dependency>
                                 <dependency>
                                     <groupId>com.sun.activation</groupId>
