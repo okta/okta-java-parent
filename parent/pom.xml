@@ -480,7 +480,7 @@
                             <configuration>
                                 <!-- Groovy tests access private fields -->
                                 <argLine>
-                                    --add-opens=java.base/java.util=ALL-UNNAMED
+                                    @{argLine} --add-opens=java.base/java.util=ALL-UNNAMED
                                 </argLine>
                             </configuration>
                         </plugin>
