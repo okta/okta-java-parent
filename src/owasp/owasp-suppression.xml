@@ -26,13 +26,14 @@
         <cve>CVE-2020-8908</cve>
     </suppress>
 
-    <!-- False positive - See https://github.com/jeremylong/DependencyCheck/issues/5213 -->
+    <!-- False positive CVE-2021-4277 - See https://github.com/jeremylong/DependencyCheck/issues/5213 -->
     <suppress>
-        <notes><![CDATA[
-            CVE-2021-4277 - filed against random script set, doesn't apply to any Maven artifacts
+       <notes><![CDATA[
+            The 'utils_project' is a personal collection of scripts from someones /bin/ directory, not a maven project
+            https://github.com/fredsmith/utils
        ]]></notes>
        <packageUrl regex="true">^pkg:maven/.*/.*@.*$</packageUrl>
-       <cve>CVE-2021-4277</cve>
+       <cpe>cpe:/a:utils_project:utils</cpe>
     </suppress>
 
 </suppressions>
