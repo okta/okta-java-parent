@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.okta</groupId>
         <artifactId>okta-aggregator</artifactId>
-        <version>26-SNAPSHOT</version>
+        <version>26</version>
     </parent>
 
     <artifactId>okta-parent</artifactId>
@@ -350,7 +350,7 @@
                         <dependency>
                             <groupId>com.okta</groupId>
                             <artifactId>okta-parent-build-support</artifactId>
-                            <version>26-SNAPSHOT</version>
+                            <version>26</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -382,7 +382,7 @@
                         <dependency>
                             <groupId>com.okta</groupId>
                             <artifactId>okta-parent-build-support</artifactId>
-                            <version>26-SNAPSHOT</version>
+                            <version>26</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -414,7 +414,7 @@
                         <dependency>
                             <groupId>com.okta</groupId>
                             <artifactId>okta-parent-build-support</artifactId>
-                            <version>26-SNAPSHOT</version>
+                            <version>26</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -663,7 +663,7 @@
                     <plugin>
                         <groupId>com.okta</groupId>
                         <artifactId>okta-doclist-maven-plugin</artifactId>
-                        <version>26-SNAPSHOT</version>
+                        <version>26</version>
                         <configuration>
                             <outputDirectory>${gh-pages.dir}</outputDirectory>
                         </configuration>
