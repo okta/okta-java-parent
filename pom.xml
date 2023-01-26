@@ -25,7 +25,7 @@
 
     <groupId>com.okta</groupId>
     <artifactId>okta-aggregator</artifactId>
-    <version>26-SNAPSHOT</version>
+    <version>27-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Okta OSS Root POM</name>
@@ -150,7 +150,7 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>7.3.0</version>
+                    <version>8.0.1</version>
                     <configuration>
                         <suppressionFile>${root.dir}/src/owasp/owasp-suppression.xml</suppressionFile>
                         <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
