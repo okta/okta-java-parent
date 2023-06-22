@@ -31,17 +31,13 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NavigableMap;
-import java.util.TreeMap;
+import java.nio.file.Files;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.VERIFY, threadSafe = true, aggregator = true)
 public class DocListMojo extends AbstractMojo {
@@ -84,13 +80,22 @@ public class DocListMojo extends AbstractMojo {
             imageDest.getParentFile().mkdir();
             FileUtils.copyURLToFile(DocListMojo.class.getResource(imageName), imageDest);
 
+            List<String> sortedVersions = getVersions();
+            sortedVersions.sort(new SemanticVersionComparator());
+
             // figure out the current version
-            NavigableMap<String, String> versionsMap = new TreeMap<>(getVersions().stream()
-                    .collect(Collectors.toMap(v -> v, v -> v))).descendingMap();
+            Map<String, String> versionsMap = new LinkedHashMap<>();
+
+            ListIterator<String> listIterator = sortedVersions.listIterator(sortedVersions.size());
+            while (listIterator.hasPrevious()) {
+                String val = listIterator.previous();
+                versionsMap.put(val, val);
+            }
 
             String currentVersion = versionsMap.isEmpty()
-                                                    ? project.getVersion()
-                                                    : versionsMap.firstEntry().getKey();
+                    ? project.getVersion()
+                    : versionsMap.keySet().iterator().next();
+
             String currentVersionName;
             String devVersion = "development";
             String devVersionName = "Development";
@@ -120,7 +125,7 @@ public class DocListMojo extends AbstractMojo {
             context.put("devVersion", devVersion);
             context.put("devVersionName", devVersionName);
 
-            try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(new File(outputDirectory, "index.html")), StandardCharsets.UTF_8)) {
+            try (OutputStreamWriter writer = new OutputStreamWriter(Files.newOutputStream(new File(outputDirectory, "index.html").toPath()), StandardCharsets.UTF_8)) {
                 template.merge(context, writer);
             }
 
@@ -144,15 +149,16 @@ public class DocListMojo extends AbstractMojo {
 
         List<String> versions = new ArrayList<>();
 
-        Repository repository = gitRepository();
-        Pattern pattern = Pattern.compile(gitTagToVersionRegex);
-        repository.getTags().keySet().forEach(tag -> {
-            Matcher matcher = pattern.matcher(tag);
-            if (matcher.matches()) {
-                String version = matcher.group("version");
-                versions.add(version);
-            }
-        });
+        try (Repository repository = gitRepository()) {
+            Pattern pattern = Pattern.compile(gitTagToVersionRegex);
+            repository.getTags().keySet().forEach(tag -> {
+                Matcher matcher = pattern.matcher(tag);
+                if (matcher.matches()) {
+                    String version = matcher.group("version");
+                    versions.add(version);
+                }
+            });
+        }
         return versions;
     }
 
