@@ -12,13 +12,6 @@ aliases:
 
 jobs:
 
-  jdk8:
-    docker:
-      - image: cimg/openjdk:8.0.322
-    environment:
-        JVM_OPTS: -Xmx3200m
-    steps: *build_steps
-
   jdk11:
     docker:
       - image: cimg/openjdk:11.0.13
@@ -33,12 +26,19 @@ jobs:
         JVM_OPTS: -Xmx3200m
     steps: *build_steps
 
+  jdk21:
+    docker:
+      - image: cimg/openjdk:21.0.0
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps: *build_steps
+
 workflows:
   build_and_test:
     jobs:
-      - jdk8
       - jdk11
       - jdk17
+      - jdk21
   # See OKTA-634408
   semgrep:
     jobs:
