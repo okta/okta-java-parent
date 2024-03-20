@@ -40,7 +40,7 @@
         <maven.version>3.9.3</maven.version>
 
         <!-- Test Dependencies: Only required for testing when building the SDK.  Not required by SDK users at runtime: -->
-        <groovy.version>4.0.19</groovy.version>
+        <groovy.version>4.0.20</groovy.version>
 
         <!-- deploy site key -->
         <github.api.key>${env.GH_API_KEY}</github.api.key>
