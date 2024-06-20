@@ -37,7 +37,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j.version>2.0.13</slf4j.version>
         <testng.version>7.10.2</testng.version>
-        <maven.version>3.9.3</maven.version>
+        <maven.version>3.9.8</maven.version>
 
         <!-- Test Dependencies: Only required for testing when building the SDK.  Not required by SDK users at runtime: -->
         <groovy.version>4.0.21</groovy.version>
