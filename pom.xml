@@ -153,8 +153,9 @@
                     <version>10.0.1</version>
                     <configuration>
                         <suppressionFile>${root.dir}/src/owasp/owasp-suppression.xml</suppressionFile>
-                        <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
+                        <failBuildOnCVSS>0</failBuildOnCVSS>
                         <name>OWASP Dependency Check</name>
+                        <nvdApiKey>${nvd.api.key}</nvdApiKey>
                     </configuration>
                 </plugin>
                 <plugin>
