@@ -21,11 +21,11 @@
     <parent>
         <groupId>com.okta</groupId>
         <artifactId>okta-aggregator</artifactId>
-        <version>37-SNAPSHOT</version>
+        <version>37</version>
     </parent>
 
     <artifactId>okta-parent-build-support</artifactId>
-    <version>37-SNAPSHOT</version>
+    <version>37</version>
 
     <name>Okta Java Parent :: Build Support</name>
     <description>
