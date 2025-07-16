@@ -28,7 +28,7 @@
 </suppress>
 <suppress>
    <cve>CVE-2025-4949</cve>
-   <gav>org.eclipse.jgit:org.eclipse.jgit</gav>
+   <packageUrl regex="true">^pkg:maven/org\.eclipse\.jgit/org\.eclipse\.jgit@.*$</packageUrl>
 </suppress>
 
 </suppressions>
