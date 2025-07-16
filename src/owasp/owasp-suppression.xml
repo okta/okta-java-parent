@@ -26,5 +26,9 @@
    <cve>CVE-2022-4245</cve>
    <cve>CVE-2025-4949</cve>
 </suppress>
+<suppress>
+   <cve>CVE-2025-4949</cve>
+   <gav>org.eclipse.jgit:org.eclipse.jgit</gav>
+</suppress>
 
 </suppressions>
