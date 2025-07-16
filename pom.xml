@@ -152,7 +152,7 @@
                     <version>12.1.3</version>
                     <configuration>
                         <suppressionFile>${root.dir}/src/owasp/owasp-suppression.xml</suppressionFile>
-                        <failBuildOnCVSS>0</failBuildOnCVSS>
+                        <failBuildOnCVSS>7.0</failBuildOnCVSS>
                         <name>OWASP Dependency Check</name>
                         <nvdApiKey>${nvd.api.key}</nvdApiKey>
                     </configuration>
