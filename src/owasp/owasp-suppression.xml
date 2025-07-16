@@ -22,24 +22,18 @@
    <!-- False positives for plexus dependencies -->
    <suppress>
       <cve>CVE-2022-4244</cve>
-      <packageUrl regex="true">
-         ^pkg:maven/org\.codehaus\.plexus/plexus\-(cipher|classworlds|component-annotations|interpolation|sec-dispatcher|xml)@.*$
-      </packageUrl>
+      <packageUrl regex="true">^pkg:maven/org\.codehaus\.plexus/plexus\-(cipher|classworlds|component-annotations|interpolation|sec-dispatcher|xml)@.*$</packageUrl>
    </suppress>
 
    <suppress>
       <cve>CVE-2022-4245</cve>
-      <packageUrl regex="true">
-         ^pkg:maven/org\.codehaus\.plexus/plexus\-(cipher|classworlds|component-annotations|interpolation|sec-dispatcher|xml)@.*$
-      </packageUrl>
+      <packageUrl regex="true">^pkg:maven/org\.codehaus\.plexus/plexus\-(cipher|classworlds|component-annotations|interpolation|sec-dispatcher|xml)@.*$</packageUrl>
    </suppress>
 
    <!-- JGit CVE -->
    <suppress>
       <cve>CVE-2025-4949</cve>
-      <packageUrl regex="true">
-         ^pkg:maven/org\.eclipse\.jgit/org\.eclipse\.jgit@.*$
-      </packageUrl>
+      <packageUrl regex="true">^pkg:maven/org\.eclipse\.jgit/org\.eclipse\.jgit@.*$</packageUrl>
    </suppress>
 
 </suppressions>
