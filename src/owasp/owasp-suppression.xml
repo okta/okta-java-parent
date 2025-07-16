@@ -24,6 +24,7 @@
    <packageUrl regex="true">^pkg:maven/org\.codehaus\.plexus/plexus\-(cipher|classworlds|component-annotations|interpolation|sec-dispatcher|xml)@.*$</packageUrl>
    <cve>CVE-2022-4244</cve>
    <cve>CVE-2022-4245</cve>
+   <cve>CVE-2025-4949</cve>
 </suppress>
 
 </suppressions>
