@@ -78,6 +78,17 @@
         <module>code-snippet-plugin</module>
     </modules>
 
+    <!-- Added dependencyManagement to fix commons-lang3 version -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.18.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
         <plugins>
             <plugin>
