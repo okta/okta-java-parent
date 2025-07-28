@@ -25,26 +25,24 @@
 
     <groupId>com.okta</groupId>
     <artifactId>okta-aggregator</artifactId>
-    <version>38-SNAPSHOT</version>
+    <version>39-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Okta OSS Root POM</name>
     <description>Okta OSS Root POM</description>
     <url>https://github.com/okta/okta-java-parent</url>
+
     <organization>
         <name>Okta</name>
         <url>http://developer.okta.com/</url>
     </organization>
+
     <inceptionYear>2017</inceptionYear>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <!-- real base dir -->
         <root.dir>${session.executionRootDirectory}</root.dir>
-
-        <!-- github -->
         <github.slug>okta/okta-java-parent</github.slug>
     </properties>
 
@@ -54,7 +52,7 @@
             <url>https://github.com/okta/okta-sdk-java/blob/master/LICENSE</url>
         </license>
     </licenses>
-    
+
     <developers>
         <developer>
             <name>Okta</name>
@@ -63,13 +61,13 @@
             <organizationUrl>https://www.okta.com</organizationUrl>
         </developer>
     </developers>
-    
+
     <scm>
         <connection>scm:git:git://github.com/okta/${github.slug}.git</connection>
         <developerConnection>scm:git:ssh://github.com:${github.slug}.git</developerConnection>
         <url>http://github.com/${github.slug}/tree/master</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>okta-aggregator-38</tag>
+    </scm>
 
     <modules>
         <module>build-support</module>
@@ -91,6 +89,18 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.8.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>3.6.0</version>
@@ -111,19 +121,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.7.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>sonatype-nexus-staging</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                    <keepStagingRepositoryOnFailure>true</keepStagingRepositoryOnFailure>
-                    <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
-                </configuration>
-            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -133,13 +130,10 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>3.1.1</version>
                     <configuration>
-                        <!-- do not update upstream, with a pending release. -->
                         <pushChanges>false</pushChanges>
                         <localCheckout>true</localCheckout>
-                        <!-- scan with OWASP plugin before release -->
                         <preparationGoals>clean verify dependency-check:aggregate</preparationGoals>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
-                        <!-- This configuration copied from apache:apache:7 parent pom -->
                         <useReleaseProfile>false</useReleaseProfile>
                         <goals>deploy</goals>
                         <mavenExecutorId>forked-path</mavenExecutorId>
@@ -156,8 +150,14 @@
                             <artifactId>maven-scm-api</artifactId>
                             <version>2.1.0</version>
                         </dependency>
+                        <dependency>
+                            <groupId>org.apache.commons</groupId>
+                            <artifactId>commons-lang3</artifactId>
+                            <version>3.18.0</version>
+                        </dependency>
                     </dependencies>
                 </plugin>
+
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
@@ -169,6 +169,7 @@
                         <nvdApiKey>${nvd.api.key}</nvdApiKey>
                     </configuration>
                 </plugin>
+
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
@@ -177,6 +178,7 @@
                         <generateBackupPoms>false</generateBackupPoms>
                     </configuration>
                 </plugin>
+
                 <plugin>
                     <groupId>io.snyk</groupId>
                     <artifactId>snyk-maven-plugin</artifactId>
