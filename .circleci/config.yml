@@ -108,8 +108,6 @@ workflows:
     jobs: 
       - snyk-scan:
           name: execute-snyk
-          requires:
-            - jdk17
           filters:
             branches:
               only:
