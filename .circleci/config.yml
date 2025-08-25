@@ -20,14 +20,14 @@ jobs:
     docker:
       - image: cimg/openjdk:11.0.22
     environment:
-        JVM_OPTS: -Xmx3200m
+      JVM_OPTS: -Xmx3200m
     steps: *build_steps
 
   jdk17:
     docker:
       - image: cimg/openjdk:17.0.11
     environment:
-        JVM_OPTS: -Xmx3200m
+      JVM_OPTS: -Xmx3200m
     steps: *build_steps
 
   jdk21:
@@ -80,6 +80,17 @@ jobs:
               --commit $CIRCLE_SHA1 \
               --build-env "circleci" \
               --suppress_output    
+  snyk-scan:
+    docker:
+      - image: cimg/openjdk:17.0.6
+    steps:
+      - checkout
+      - run: ./mvnw clean install -Pci -Dlicense.skip=true -Dmaven.test.skip.exec=true
+      - general-platform-helpers/step-run-snyk-monitor:
+          scan-all-projects: true
+          skip-unresolved: false
+          run-on-non-main: true
+          additional-arguments: "--maven-aggregate-project"
 
 workflows:
   build_and_test:
@@ -89,12 +100,25 @@ workflows:
       - jdk21
   semgrep:
     jobs:
+      - jdk17
       - platform-helpers/job-semgrep-scan:
           name: "Scan with Semgrep"
+          context:
+            - static-analysis
+      - snyk-scan:
+          name: execute-snyk
+          requires:
+            - jdk17
+          filters:
+            branches:
+              only:
+                - master
+                - main
+                - OKTA-802778
           context:
             - static-analysis
   "Malware Scanner":
     jobs:
       - reversing-labs:
           context:
-            - static-analysis          
+            - static-analysis
