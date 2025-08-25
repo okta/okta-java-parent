@@ -100,20 +100,23 @@ workflows:
       - jdk21
   semgrep:
     jobs:
+      - jdk17
       - platform-helpers/job-semgrep-scan:
           name: "Scan with Semgrep"
           context:
             - static-analysis
-  snyk-scan:
-    jobs: 
       - snyk-scan:
           name: execute-snyk
+          requires:
+            - jdk17
           filters:
             branches:
               only:
                 - master
                 - main
                 - OKTA-802778
+          context:
+            - static-analysis
   "Malware Scanner":
     jobs:
       - reversing-labs:
